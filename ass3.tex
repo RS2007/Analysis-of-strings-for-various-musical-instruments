@@ -1,0 +1,70 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{authblk}
+\usepackage[utf8]{inputenc}
+\usepackage{datetime}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\graphicspath{{./}}
+
+\topmargin=0cm
+\evensidemargin=-1cm
+\oddsidemargin=-1cm
+\textheight=23cm
+\textwidth=18cm
+\linespread{1.5}
+\title{\vspace{-3.5cm}\Huge{Assignment 3: Analysis string data and materials}}
+\date{\vspace{-0.75cm}April 2023}
+\author{\vspace{-3mm}Rohith Suresh - EP20B029}
+\affil{\vspace{-3mm}Indian Institue Of Technology, Madras}
+
+\renewcommand{\familydefault}{phv}
+
+\begin{document}
+\maketitle
+\section*{Methodology}
+\subsection*{Theory}
+For a simplified model of a single string with inharmonicity, the differential equation governing the displacement variations with time is given by:
+$$ {\mu}{\frac{\partial^2 y}{\partial^2 t}} = T{\frac{\partial^2 y}{\partial^2 x}} - EA{K^2}{\frac{\partial^4 y}{\partial^4 x}}$$
+Solving equations for the frequency for instruments with pinned ends:
+$$ f_n = f_1*\sqrt{1+B{n^2}} $$
+where $ B = \frac{{\pi^2}{E}{A}{K^2}}{T{L^2}} $ and $f_1 = \frac{1}{2L}\sqrt{\frac{T}{\mu}}$
+
+\subsection*{Procedure}
+The given data was saved to a txt file and loaded into a python script. Using the given material parameters of steel and the length of the instrument and given frequencies the tension in the string and inharmonicity is calculated. They are subjected to the given constraints and the apt ones are printed to standard output.
+\subsubsection*{Details about the implementation}
+The script is written in a functional style, with the following functions:
+\begin{itemize}
+	\item \begin{verbatim}circ_area_diam\end{verbatim}- computes cross sectional area of a string given its diameter
+	\item \begin{verbatim}compute_mu\end{verbatim}- computes the linear mass density given the area and the volume mass density
+	\item \begin{verbatim}f_harmonic\end{verbatim}- computes the first harmonic frequency from tension, length and mass density
+	\item \begin{verbatim}T_from_wave_eq\end{verbatim}- computes the tension for a given  frequency, length and mass per unit length
+	\item \begin{verbatim}calculate_inharmonicity\end{verbatim}- computes the inharmonicity for the string
+	\item \begin{verbatim}calculate_freq_deviation\end{verbatim}- calculates the frequency deviation ratio due to inharmonicity for the first harmonic
+\end{itemize}
+\subsubsection*{Constraints}
+\begin{itemize}
+	\item The tension in the string divided by the cross section area should be between 25\% and 75\% of tensile strength.
+	\item The inharmonicity should not exceed 0.01\% of the frequency
+	\item String diameters should be from the SWG scale
+	\item Inharmonicity parameter is less than $5*10^{-5}$
+\end{itemize}
+\subsubsection*{Implementation}
+- Jupyter notebook with the implementation and results \href{https://docs.google.com/spreadsheets/d/1Lzx0I2v2TZ8aA1razvSYvpoT3NF7jGif2orAO8jnT8Y/edit#gid=40375363}{here}
+\subsubsection*{Results}
+- Frequencies and corresponding string tensions for steel strings: \href{https://docs.google.com/spreadsheets/d/1JOnlDo6DXmJY8TRtKpOyS_VrxI3vw54WnmttQUaC2n4/edit#gid=0}{here}
+
+
+
+\end{document}
